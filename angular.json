@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-jwt": {
+    "logistica": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -77,14 +77,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-jwt:build"
+            "browserTarget": "logistica:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-jwt:build:production"
+              "browserTarget": "logistica:build:production"
             },
             "development": { 
-              "browserTarget": "angular-jwt:build:development"
+              "browserTarget": "logistica:build:development"
             }
           },
           "defaultConfiguration": "development" 
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-jwt:build"
+            "browserTarget": "logistica:build"
           }
         },
         "test": {
@@ -130,18 +130,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-jwt:serve"
+            "devServerTarget": "logistica:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-jwt:serve:production"
+              "devServerTarget": "logistica:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-jwt",
+  "defaultProject": "logistica",
   "cli": {
     "analytics": false
   }
