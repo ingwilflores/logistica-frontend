@@ -1,0 +1,131 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Registro de localizaciones de entrega</h3>
+    <form (ngSubmit)= "create()" #dataForm = "ngForm">
+      <div class="form-group">
+          <label>Codigo : </label>
+          <input type = "text"
+          class="form-control"
+          id = "codigo"
+          [(ngModel)] = "data.codigo"
+          name = "codigo"
+          required
+          minlength="1"
+          maxlength="5"
+          placeholder="Digite el codigo "
+          #codigo = "ngModel"
+          >
+          <div class="alert alert-danger" *ngIf= "codigo.invalid && (codigo.dirty || codigo.touched)">
+            <div *ngIf = "codigo.errors.required">
+              Digite su codigo por favor
+            </div>
+            <div *ngIf = "codigo.errors.minlength">
+              El codigo tiene que contener como minimo 1 caracteres
+            </div>
+            <div *ngIf = "codigo.errors.maxlength">
+              El codigo tiene que tener como maximo 5 caracteres
+            </div>
+          </div>
+        </div>
+    <div class="form-group">
+      <label>Nombre : </label>
+      <input type = "text"
+      class="form-control"
+      id = "nombre"
+      [(ngModel)] = "data.nombre"
+      name = "nombre"
+      required
+      minlength="1"
+      maxlength="50"
+      placeholder="Digite su nombre "
+      #nombre = "ngModel"
+      >
+      <div class="alert alert-danger" *ngIf= "nombre.invalid && (nombre.dirty || nombre.touched)">
+        <div *ngIf = "nombre.errors.required">
+          Digite su nombre por favor
+        </div>
+        <div *ngIf = "nombre.errors.minlength">
+          El nombre tiene que contener como minimo 1 caracteres
+        </div>
+        <div *ngIf = "nombre.errors.maxlength">
+          El nombre tiene que tener como maximo 50 caracteres
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Descripcion: </label>
+      <input type = "text"
+      class="form-control"
+      id = "descripcion"
+      [(ngModel)] = "data.descripcion"
+      name = "descripcion"
+      required
+      minlength="1"
+      maxlength="100"
+      placeholder="Digite la descripcion "
+      #descripcion = "ngModel"
+      >
+      <div class="alert alert-danger" *ngIf= "descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+        <div *ngIf = "descripcion.errors.required">
+          Digite la descripcion por favor
+        </div>
+        <div *ngIf = "descripcion.errors.minlength">
+          La descripcion tiene que contener como minimo 1 caracteres
+        </div>
+        <div *ngIf = "descripcion.errors.maxlength">
+          La descripcion tiene que tener como maximo 100 caracteres
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label>Modalidad: </label>
+    <mat-form-field appearance="fill" class="form-control">
+      <!-- <mat-select [formControl]="data.idModalidad" 
+      placeholder="Seleccione una modalidad" name="modalidad" >
+        <mat-option *ngFor="let m of modalidadesList" [value]="m.idModalidad">{{ m.nombre }}</mat-option>
+      </mat-select> -->
+      <mat-select 
+        name="modalidad"
+        placeholder="Seleccione" 
+        [(ngModel)]="data.idModalidad" 
+        (selectionChange)="onChange($event)"
+        required
+        >
+          <mat-option 
+            *ngFor="let m of modalidadesList" 
+            [value]="m.idModalidad">
+            {{m.nombre}}
+          </mat-option>
+      </mat-select>
+      <!-- <mat-label>Modalidades</mat-label>
+      <mat-select [formControl]="modalidades" multiple>
+        <mat-select-trigger>
+          {{modalidades.value?.[0] || ''}}
+          <span *ngIf="(modalidades.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(modalidades.value?.length || 0) - 1}} {{modalidades.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let modalidad of modalidadesList" [value]="modalidad.idModalidad">{{modalidad.nombre}}</mat-option>
+      </mat-select> -->
+    </mat-form-field>
+    <!-- <select ng-model="data.idModalidad" ng-options="option in modalidades"  class="chosen-select"></select> -->
+    <!-- <select ng-model="data.idModalidad" class="chosen-select">
+      <option ng-repeat="course in courses" ng-value="course.idModalidad">
+        {{course.idModalidad}}
+      </option>
+   </select> -->
+      <!-- <select name="repeatSelect" id="repeatSelect" ng-model="data.idModalidad">
+        <option ng-repeat="option in modalidades" value="{{option.idModalidad}}" ng-selected="option.selected == true">{{option.idModalidad}}</option>
+      </select> -->
+      <!-- <select [(ngModel)] ="data.idModalidad">
+        <option ng-repeat="modalidad in modalidades" ng-value="{{modalidad.idModalidad}}">{{modalidades.idModalidad}}</option>
+      </select> -->
+    </div>
+    <p></p>
+    <button [routerLink]="'/localizacionEntrega'" mat-raised-button style="margin-right: 6px;">Cancelar</button>
+    <button class="btn btn-success" [disabled]= "!dataForm.form.valid">Guardar</button>
+    
+    </form>
+    
+  </div>

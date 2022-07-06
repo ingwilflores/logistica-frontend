@@ -1,0 +1,94 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Registro de empleado</h3>
+    <form (ngSubmit)= "update()" #dataForm = "ngForm">
+      <div class="form-group">
+          <label>Codigo : </label>
+          <input type = "text"
+          class="form-control"
+          id = "codigo"
+          [(ngModel)] = "data.codigo"
+          name = "codigo"
+          required
+          minlength="1"
+          maxlength="5"
+          placeholder="Digite el codigo "
+          #codigo = "ngModel"
+          >
+          <div class="alert alert-danger" *ngIf= "codigo.invalid && (codigo.dirty || codigo.touched)">
+            <div *ngIf = "codigo.errors.required">
+              Digite su codigo por favor
+            </div>
+            <div *ngIf = "codigo.errors.minlength">
+              El codigo tiene que contener como minimo 1 caracter
+            </div>
+            <div *ngIf = "codigo.errors.maxlength">
+              El codigo tiene que tener como maximo 5 caracteres
+            </div>
+          </div>
+        </div>
+    <div class="form-group">
+      <label>Nombre : </label>
+      <input type = "text"
+      class="form-control"
+      id = "nombre"
+      [(ngModel)] = "data.nombre"
+      name = "nombre"
+      required
+      minlength="1"
+      maxlength="50"
+      placeholder="Digite su nombre "
+      #nombre = "ngModel"
+      >
+      <div class="alert alert-danger" *ngIf= "nombre.invalid && (nombre.dirty || nombre.touched)">
+        <div *ngIf = "nombre.errors.required">
+          Digite su nombre por favor
+        </div>
+        <div *ngIf = "nombre.errors.minlength">
+          El nombre tiene que contener como minimo 1 caracteres
+        </div>
+        <div *ngIf = "nombre.errors.maxlength">
+          El nombre tiene que tener como maximo 50 caracteres
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group"> 
+      <label>Descripcion: </label>
+      <input type = "text"
+      class="form-control"
+      id = "descripcion"
+      [(ngModel)] = "data.descripcion"
+      name = "descripcion"
+      required
+      minlength="1"
+      maxlength="100"
+      placeholder="Digite la descripcion "
+      #descripcion = "ngModel"
+      >
+      <div class="alert alert-danger" *ngIf= "descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+        <div *ngIf = "descripcion.errors.required">
+          Digite la descripcion por favor
+        </div>
+        <div *ngIf = "descripcion.errors.minlength">
+          La descripcion tiene que contener como minimo 1 caracteres
+        </div>
+        <div *ngIf = "descripcion.errors.maxlength">
+          La descripcion tiene que tener como maximo 100 caracteres
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Modalidad: </label>
+      <mat-form-field (click)="getModalidad()" class="form-control" appearance="fill" >
+        <mat-select name="modalidad" placeholder="Seleccione" [(ngModel)]="data.idModalidad" (selectionChange)="onChange($event)" required>
+          <mat-option *ngIf="!modalidadesList" #allSelected [value]="data.idModalidad">{{ dataModalidad.nombre }}</mat-option>
+          <mat-option #allSelected   *ngFor="let m of modalidadesList" [value]="m">{{ m.nombre }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <p></p>
+      <button [routerLink]="'/localizacionEntrega'" mat-raised-button style="margin-right: 6px;">Cancelar</button>
+      <button class="btn btn-success" [disabled]= "!dataForm.form.valid">Actualizar</button>
+  </form>
+    
+  </div>

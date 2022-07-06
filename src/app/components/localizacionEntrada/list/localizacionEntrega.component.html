@@ -1,0 +1,79 @@
+<p></p>
+<h5>Lista de localizaciones de entrega</h5>
+<button class="btn btn-success" [routerLink]="'/add-localizacionEntrega'">+ Agregar</button>
+<p></p>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.idLocalizacionEntrega}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Codigo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.codigo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Descripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Modalidad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Modalidad </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.idModalidad.nombre}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index " class="sec-acciones"> 
+        <section >
+          <div class="example-button-row">
+            <button [routerLink]="['/edit-localizacionEntrega',row.idLocalizacionEntrega]" mat-raised-button color="primary">Editar</button>
+            <button (click)= "delete(row, i)" mat-raised-button color="warn">Eliminar</button>
+          </div>
+        </section>
+      </mat-cell>
+    </ng-container>
+    
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; let i = index; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="1000"></mat-paginator>
+</div>
+
+<!-- <table id="idTable1" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead class="table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Modalidad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let dat of data">
+      <td>{{dat.idLocalizacionEntrega}}</td>
+      <td>{{dat.codigo}}</td>
+      <td>{{dat.nombre}}</td>
+      <td>{{dat.descripcion}}</td>
+      <td>{{dat.idModalidad.nombre}}</td>
+      <td align="center">
+        <section>
+          <div class="example-button-row">
+            <button [routerLink]="['/edit-localizacionEntrega',dat.idLocalizacionEntrega]" mat-raised-button color="primary">Editar</button>
+            <button (click)= "delete(dat.idLocalizacionEntrega)" mat-raised-button color="warn">Eliminar</button>
+          </div>
+        </section>
+      </td>
+    </tr>
+  </tbody>
+</table> -->

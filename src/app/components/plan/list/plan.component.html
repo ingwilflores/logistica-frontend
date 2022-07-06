@@ -1,0 +1,35 @@
+<p></p>
+<h5>Lista de planes de entrega</h5>
+<button mat-raised-button color="success">+ Agregar</button>
+<p></p>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Cliente</th>
+      <th>Numero de Guia</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let dat of data">
+      <td>{{dat.idCliente.nombres || ' ' || dat.idCliente.apellidos}}</td>
+      <td>{{dat.numeroGuia}}</td>
+      <td>{{dat.idTipoProducto.nombre}}</td>
+      <td>{{dat.cantidad}}</td>
+      <td>{{dat.precioEnvio}}</td>
+      <td align="center">
+        <section>
+          <div class="example-button-row">
+            <button (click)= "update(dat.id, dat)" mat-raised-button color="primary">Editar</button>
+            <button (click)= "update(dat.id, dat)" mat-raised-button color="warn">Eliminar</button>
+          </div>
+        </section>
+        <!-- <button (click)= "eliminarEmpleado(empleado.id)" class="btn btn-danger" style="margin-left : 10px;">Eliminar</button>
+        <button (click)= "verDetallesDelEmpleado(empleado.id)" class="btn btn-primary" style="margin-left : 10px;">Detalles</button> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

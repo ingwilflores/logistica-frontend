@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row >
+        <span><a mat-button href="https://www.logistica.com" style="font-size: larger;">Logistica</a></span>
+        <span class="example-fill-remaining-space"></span>
+        <span class="align-center"></span>
+        <span class="example-spacer"></span>
+        <a class="nav-link">|</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Inicio</a>
+        <a mat-button *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+        <!-- <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/addemployee" class="nav-link">Add New Employee</a> -->
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/localizacionEntrega" class="nav-link">Localizaciones</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/plan" class="nav-link">Planes de Entrega</a>
+        <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link"><b>Cerrar Sesión</b></a>
+    </mat-toolbar-row>
+</mat-toolbar>
