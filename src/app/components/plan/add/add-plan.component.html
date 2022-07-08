@@ -1,60 +1,181 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>Add Employee</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="example-form">
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username" [(ngModel)]="user.name" name="name" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Designation" [(ngModel)]="user.designation" name="designation" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employee Id" [(ngModel)]="user.empId" name="employeeid" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button (click)="createEmployee()" color="primary">Create</button>
-    </mat-card-actions>
-</mat-card>
-
-
-<!-- 
-<div class="col-md-6">
-    <h2 class="text-center">Add Employee</h2>
-    <form>
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="name" [(ngModel)]="user.name" placeholder="Name" name="name" class="form-control" id="name">
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Planes de entrega</h3>
+    <form (ngSubmit)= "create()" #dataForm = "ngForm">
+      <div class="row">
+        <div class="col col-6">
+        <div class="form-group" style="width: 100%;">
+            <label>Cantidad de producto: </label>
+            <input type = "number"
+            pattern="\d*"
+            class="form-control"
+            id = "cantidad"
+            [(ngModel)] = "data.cantidad"
+            name = "cantidad"
+            required
+            min="1"
+            max="999999999"
+            placeholder="Digite la cantidad"
+            #cantidad = "ngModel"
+            >
+            <div class="alert alert-danger" *ngIf= "cantidad.invalid && (cantidad.dirty || cantidad.touched)">
+              <div *ngIf = "cantidad.errors.required">
+                Digite la cantidad por favor
+              </div>
+              <div *ngIf = "cantidad.errors.pattern">
+                La cantidad debe ser un número entero
+              </div>
+              <div *ngIf = "cantidad.errors.min">
+                La cantidad debe ser como minimo 1
+              </div>
+              <div *ngIf = "cantidad.errors.max">
+                La cantidad debe ser como maximo 999999999
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="form-group">
-            <label for="designation">Designation:</label>
-            <input [(ngModel)]="user.designation" placeholder="Designation" name="designation" class="form-control" id="designation">
+        <div class="col col-6">
+      <div class="form-group" style="width: 100%;">
+          <label>Precio de envio: </label>
+          <input type = "number"
+          class="form-control"
+          id = "precioEnvio"
+          [(ngModel)] = "data.precioEnvio"
+          name = "precioEnvio"
+          required
+          min="0.01"
+          placeholder="Digite el precio de envío "
+          #precioEnvio = "ngModel"
+          >
+          <div class="alert alert-danger" *ngIf= "precioEnvio.invalid && (precioEnvio.dirty || precioEnvio.touched)">
+            <div *ngIf = "precioEnvio.errors.required">
+              Digite el precio de envío por favor
+            </div>
+            <div *ngIf = "precioEnvio.errors.min">
+              El precio de envío debe ser como minimo 0.01
+            </div>
+          </div>
         </div>
-
-        <div class="form-group">
-            <label for="empId">Employee Id</label>
-            <input [(ngModel)]="user.empId" placeholder="Employee Id" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+    </div>
+    <div class="form-group">
+        <label>Número de Guia: </label>
+        <input type = "text"
+        class="form-control"
+        id = "numeroGuia"
+        [(ngModel)] = "data.numeroGuia"
+        name = "numeroGuia"
+        required
+        minlength="1"
+        maxlength="10"
+        placeholder="Digite el numero de guia "
+        #numeroGuia = "ngModel"
+        >
+        <div class="alert alert-danger" *ngIf= "numeroGuia.invalid && (numeroGuia.dirty || numeroGuia.touched)">
+          <div *ngIf = "numeroGuia.errors.required">
+            Excriba el número de guía por favor
+          </div>
+          <div *ngIf = "numeroGuia.errors.minlength">
+            El nombre tiene que contener como minimo 1 caracteres
+          </div>
+          <div *ngIf = "numeroGuia.errors.maxlength">
+            El nombre tiene que tener como maximo 10 caracteres
+          </div>
         </div>
+      </div>
+    
+      <div class="form-group">
+        <label>Placa/Flota del medio de transporte: </label>
+        <input type = "text"
+        class="form-control"
+        id = "medioTransporte"
+        [(ngModel)] = "data.medioTransporte"
+        name = "medioTransporte"
+        required
+        minlength="1"
+        maxlength="8"
+        placeholder="Digite el numero de guia "
+        #medioTransporte = "ngModel"
+        >
+        <div class="alert alert-danger" *ngIf= "medioTransporte.invalid && (medioTransporte.dirty || medioTransporte.touched)">
+          <div *ngIf = "medioTransporte.errors.required">
+            Excriba la placa/flota del medio de transporte
+          </div>
+          <div *ngIf = "medioTransporte.errors.minlength">
+            La placa/flota del medio de transporte tiene que contener como minimo 1 caracteres
+          </div>
+          <div *ngIf = "medioTransporte.errors.maxlength">
+            La placa/flota del medio de transporte tiene que tener como maximo 8 caracteres
+          </div>
+        </div>
+      </div>
 
-        <button class="btn btn-success" (click)="createEmployee()">Create</button>
+
+    <div class="form-group">
+      <label>Fecha de entrega: </label>
+      <mat-form-field appearance="fill" class="form-control" >
+        <input matInput [matDatepicker]="picker" [(ngModel)] = "data.fechaEntrega" name="fechaEntrega" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div class="form-group">
+    <label>Localización de entrega: </label>
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-select 
+        name="localizacionEntrega"
+        placeholder="Seleccione" 
+        [(ngModel)]="data.idLocalizacionEntrega" 
+        (selectionChange)="onChangeLE($event)"
+        required >
+          <mat-option 
+            *ngFor="let m of localizacionEntregaList" 
+            [value]="m.idLocalizacionEntrega">
+            {{m.nombre}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div>
+
+    <div class="form-group">
+        <label>Cliente: </label>
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-select 
+            name="cliente"
+            placeholder="Seleccione" 
+            [(ngModel)]="data.idCliente"
+            (selectionChange)="onChangeC($event)"
+            required >
+              <mat-option 
+                *ngFor="let m of clientesList" 
+                [value]="m.idCliente">
+                {{m.nombres}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        </div>
+    <div class="form-group">
+        <label>Producto: </label>
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-select 
+            name="producto"
+            placeholder="Seleccione" 
+            [(ngModel)]="data.idProducto"
+            (selectionChange)="onChangeP($event)"
+            required >
+              <mat-option 
+                *ngFor="let m of productosList" 
+                [value]="m.idProducto">
+                {{m.nombre}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        </div>
+    <p></p>
+
+    <button [routerLink]="'/plan'" mat-raised-button style="margin-right: 6px;">Cancelar</button>
+    <button class="btn btn-success" [disabled]= "!dataForm.form.valid">Guardar</button>
     </form>
-</div> -->
+
+    
+  </div>

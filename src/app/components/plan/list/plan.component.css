@@ -1,9 +1,9 @@
 table {
-    width: 100%;
+  width: 100%;
 }
 .cdk-overlay-pane.my-dialog {
-    position: relative!important;
-  }
+  position: relative!important;
+}
 
 .mat-raised-button {
 padding: 0 1px 0 1px;
@@ -19,14 +19,51 @@ outline: none;
 }
 
 th {
-  text-align: center !important;
-  vertical-align: middle !important;
+text-align: center !important;
+vertical-align: middle !important;
 }
 
 .mat-raised-button.mat-success,
 .mat-flat-button.mat-success,
 .mat-fab.mat-success,
-.mat-mini-fab.mat-success {
-  color: #f0fff3;
-  background-color: #155724;
+.mat-mini-fab.mat-success
+{
+color: #f0fff3;
+background-color: #155724;
+border-radius: 4px;
+}
+
+.btn
+{border-radius: 4px;
+}
+
+table {
+width: 100%;
+}
+
+mat-header-cell, mat-cell.sec-acciones {
+justify-content: center;
+}
+
+
+
+.example-container {
+display: flex;
+flex-direction: column;
+min-width: 300px;
+}
+
+.example-header {
+min-height: 64px;
+padding: 8px 24px 0;
+}
+
+.mat-form-field {
+font-size: 14px;
+width: 100%;
+}
+
+.mat-table {
+overflow: auto;
+max-height: 600px;
 }

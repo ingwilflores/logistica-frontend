@@ -1,35 +1,53 @@
 <p></p>
 <h5>Lista de planes de entrega</h5>
-<button mat-raised-button color="success">+ Agregar</button>
+<button class="btn btn-success" [routerLink]="'/add-plan'">+ Agregar</button>
 <p></p>
-<table class="table table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th>Cliente</th>
-      <th>Numero de Guia</th>
-      <th>Producto</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor= "let dat of data">
-      <td>{{dat.idCliente.nombres || ' ' || dat.idCliente.apellidos}}</td>
-      <td>{{dat.numeroGuia}}</td>
-      <td>{{dat.idTipoProducto.nombre}}</td>
-      <td>{{dat.cantidad}}</td>
-      <td>{{dat.precioEnvio}}</td>
-      <td align="center">
-        <section>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.idPlan}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Cliente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.idCliente.nombres}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="NumeroGuia">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Numero de Guia </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.numeroGuia}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Cantidad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cantidad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="PrecioEnvio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Precio de Envio </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.precioEnvio}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="FechaEntrega">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Entrega </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fechaEntrega}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index " class="sec-acciones"> 
+        <section >
           <div class="example-button-row">
-            <button (click)= "update(dat.id, dat)" mat-raised-button color="primary">Editar</button>
-            <button (click)= "update(dat.id, dat)" mat-raised-button color="warn">Eliminar</button>
+            <button [routerLink]="['/edit-plan',row.idPlan]" mat-raised-button color="primary">Editar</button>
+            <button (click)= "delete(row, i)" mat-raised-button color="warn">Eliminar</button>
           </div>
         </section>
-        <!-- <button (click)= "eliminarEmpleado(empleado.id)" class="btn btn-danger" style="margin-left : 10px;">Eliminar</button>
-        <button (click)= "verDetallesDelEmpleado(empleado.id)" class="btn btn-primary" style="margin-left : 10px;">Detalles</button> -->
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </mat-cell>
+    </ng-container>
+    
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; let i = index; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="1000"></mat-paginator>
+</div>

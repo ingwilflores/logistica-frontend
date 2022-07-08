@@ -12,7 +12,7 @@
         <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form (keyup.enter)="checkLogin()">
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>

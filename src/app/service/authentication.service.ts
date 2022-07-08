@@ -16,7 +16,7 @@ export class AuthenticationService {
 //store JWT token in session
   authenticate(username, password) {
     return this.httpClient
-      .post<any>(environment.REST_API + "authenticate", { username, password })
+      .post<any>(environment.REST_API + "api/auth/authenticate", { username, password })
       .pipe(
         map(userData => {
           sessionStorage.setItem("username", username);

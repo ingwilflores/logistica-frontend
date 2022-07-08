@@ -69,12 +69,91 @@ export class HttpClientService {
     );
   }
 
-  
+  public getModalidad() {
+    return this.httpClient.get<any>(environment.REST_API + "api/modalidad");
+  }
+
   public getPlan() {
     return this.httpClient.get<any>(environment.REST_API + "api/plan");
   }
 
-  public getModalidad() {
-    return this.httpClient.get<any>(environment.REST_API + "api/modalidad");
+  public getPlanById(id: number) {
+    return this.httpClient.get<any>(environment.REST_API + "api/plan/"+id);
+  }
+
+  public updatePlan(id: number, data: any) {
+    return this.httpClient.put<any>(
+      environment.REST_API + "api/plan/" + id, data
+    );
+  }
+
+  public deletePlan(id: number) {
+    return this.httpClient.delete<any>(
+      environment.REST_API + "api/plan/" + id
+    );
+  }
+
+  public createPlan(data:any) {
+    console.log("----data send----"+JSON.stringify(data))
+    return this.httpClient.post<any>(
+      environment.REST_API + "api/plan",
+      data
+    );
+  }
+
+  public getCliente() {
+    return this.httpClient.get<any>(environment.REST_API + "api/cliente");
+  }
+
+  public getClienteById(id: number) {
+    return this.httpClient.get<any>(environment.REST_API + "api/cliente/"+id);
+  }
+
+  public updateCliente(id: number, data: any) {
+    return this.httpClient.put<any>(
+      environment.REST_API + "api/cliente/" + id, data
+    );
+  }
+
+  public deleteCliente(id: number) {
+    return this.httpClient.delete<any>(
+      environment.REST_API + "api/cliente/" + id
+    );
+  }
+
+  public createCliente(data:any) {
+    console.log("----data send----"+JSON.stringify(data))
+    return this.httpClient.post<any>(
+      environment.REST_API + "api/cliente",
+      data
+    );
+  }
+
+  public getProducto() {
+    return this.httpClient.get<any>(environment.REST_API + "api/producto");
+  }
+
+  public getProductoById(id: number) {
+    return this.httpClient.get<any>(environment.REST_API + "api/producto/"+id);
+  }
+
+  public updateProducto(id: number, data: any) {
+    return this.httpClient.put<any>(
+      environment.REST_API + "api/producto/" + id, data
+    );
+  }
+
+  public deleteProducto(id: number) {
+    return this.httpClient.delete<any>(
+      environment.REST_API + "api/producto/" + id
+    );
+  }
+
+  public createProducto(data:any) {
+    console.log("----data send----"+JSON.stringify(data))
+    return this.httpClient.post<any>(
+      environment.REST_API + "api/producto",
+      data
+    );
   }
 }

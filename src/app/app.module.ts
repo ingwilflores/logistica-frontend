@@ -19,6 +19,7 @@ import { PlanComponent } from './components/plan/list/plan.component';
 import { AddLocalizacionEntradaComponent } from './components/localizacionEntrada/add/add-localizacionEntrada.component';
 import { AddPlanComponent } from './components/plan/add/add-plan.component';
 import { EditLocalizacionEntradaComponent } from './components/localizacionEntrada/edit/edit-localizacionEntrada.component';
+import { EditPlanComponent } from './components/plan/edit/edit-plan.component';
 import { DialogoConfirmacionComponent } from './components/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DialogoResultadoComponent } from './components/dialogo-resultado/dialogo-resultado.component';
 
@@ -37,6 +38,7 @@ import { DialogoResultadoComponent } from './components/dialogo-resultado/dialog
     LogoutComponent,
     LocalizacionEntregaComponent,
     PlanComponent,
+    EditPlanComponent,
     AddLocalizacionEntradaComponent,
     AddPlanComponent,
     EditLocalizacionEntradaComponent
